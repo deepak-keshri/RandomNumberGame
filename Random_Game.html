@@ -1,0 +1,167 @@
+<!--WAP to genrate random Number with the help of javaScript-->
+<html>
+  <head>
+    <style>
+      body
+      {
+        background-image: radial-gradient(circle,black,yellow);
+      }
+      td
+      {
+        color: white;
+      }
+      table
+      {
+        position: relative;
+        top: 150px; 
+      }
+      input[type='text']
+      {
+        border: 2px solid black;  
+        outline: none;
+        border-radius: 10px;
+        height: 40px;
+        font-size: 30px;
+        width: 100px;
+        text-align: center;
+        font-weight: bold;
+      }
+      input[type='number']
+      {
+        font-weight: bold;
+        font-size: 30px;
+        border: 2px solid black;  
+        width: 80px;
+        height: 40px;
+        outline: none;
+        border-radius: 10px;
+      }
+      .bd
+      {
+        font-weight: bold;
+        font-size: 25px;
+        text-align: center;
+        color: red;
+      }
+      .btn
+      {
+        cursor: pointer;
+        color: white;
+        font-weight: bold;
+        position: relative;
+        top: 100px;
+        height: 30px;
+        width: 75px;
+        font-size: 20px;
+        outline: none;
+        border-radius: 10px;
+      }
+      #btn1
+      {
+        background-color: green;
+      }
+      #btn2
+      {
+        background-color: red;
+      }
+      #point
+      {
+        position: relative;
+        text-align: center;
+      }
+
+    </style>
+  </head>
+  <body>
+    <center>
+      <table>
+        <tr class="bd">
+          <td>1st No.</td>
+          <td></td>
+          <td>2nd No.</td>
+          <td>Result</td>
+        </tr>
+        <tr>
+          <td><input type="text" id="n1" name="n1" size="10" readonly></td>
+          <td><div id="sign">+</div></td>
+          <td><input type="text" id="n2" name="n2" size="10" readonly> = </td>
+          <td><input type="number" id="n" name="n" size="10" autofocus></td>
+        </tr>
+        <tr style="text-align: center;">
+          <td colspan="4">
+            <input type="button" value="Start" id="btn1" class="btn" onclick="StartGame()"> 
+            <input type="button" value="Stop" id="btn2" class="btn" onclick="StopGame()">
+          </td>
+        </tr>
+        <tr style="font-weight: bold; text-align: center;">
+          <td colspan="4">Win Points &nbsp;&nbsp;
+          Loss Points</td>
+        </tr>
+        <tr id="point">
+          <td colspan="4"><input type="text" id="winp" name="winp" size="5" readonly>
+          <input type="text" id="losp" name="losp" size="5" style="color: red;" readonly></td>
+        </tr>
+      </table>
+    </center>
+    <script>
+      var win=1,los=1;
+      var n1=document.getElementById("n1");
+      var n2=document.getElementById("n2");
+      var n=document.getElementById("n");
+      var sign=document.getElementById("sign");
+      var winp=document.getElementById("winp");
+      var losp=document.getElementById("losp");
+    
+      function StartGame()
+      {
+        n.value='';
+        s=['+','-','*','/'];  //s for sign
+
+        n1.value=num1=Math.floor(Math.random()*10);
+        n2.value=num2=Math.floor(Math.random()*10);
+        s1=sign.innerHTML=s[num1%4];     // Assign Different Sign.
+
+        clr=window.setTimeout(function()
+        {
+          if(s1=='*')
+          {
+            if(num1*num2==n.value)
+              winp.value=win,win++;
+            else
+              losp.value=los,los++;
+          }
+          else if(s1=='-')
+          {
+            if(num1-num2==n.value)
+              winp.value=win,win++;
+            else
+              losp.value=los,los++;
+          }
+          else if(s1=='+')
+          {
+            if(num1+num2==n.value)
+              winp.value=win,win++;
+            else
+              losp.value=los,los++;
+          }
+          else if(s1=='/')
+          {
+            if(num1/num2==n.value)
+              winp.value=win,win++;
+            else
+              losp.value=los,los++;
+          }
+
+          StartGame();
+        },3000);
+      }
+
+      function StopGame()
+      {
+        n1.value="";
+        n2.value="";
+        clearTimeout(clr);
+      }
+    </script>
+  </body>
+</html>
